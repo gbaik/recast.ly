@@ -3,29 +3,19 @@ class App extends React.Component {
     super(props);
   
     this.state = {
-      //put in videos, to keep track of all the videos
       videos: exampleVideoData,
       video: exampleVideoData[0]
     };
 
-    // this.onVideoListEntryClick = function(event) {
-    //   // this.setState({
-    //   //   video: this.state.
-    //   // })
-    //   console.log('hello');
-    // };
   }  
 
   handleVideoListEntryClick(event) {
-    console.log('event', this);
     this.setState({
       video: event
     });
-    // console.log('state', this.state);
   }
 
   render() {
-    console.log('label', this.state.video);
     return (  
       <div>
         <Nav />
