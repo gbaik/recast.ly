@@ -16,11 +16,16 @@ class App extends React.Component {
     // };
   }  
 
-  onVideoListEntryClick(event) {
-    console.log('hello');
+  handleVideoListEntryClick(event) {
+    console.log('event', this);
+    this.setState({
+      video: event
+    });
+    // console.log('state', this.state);
   }
 
   render() {
+    console.log('label', this.state.video);
     return (  
       <div>
         <Nav />
@@ -28,7 +33,7 @@ class App extends React.Component {
           <VideoPlayer video={this.state.video}/>
         </div>
         <div className="col-md-5">
-          <VideoList videos={this.state.videos} onVideoListEntryClick={this.onVideoListEntryClick}/>
+          <VideoList videos={this.state.videos} onVideoListEntryClick={this.handleVideoListEntryClick.bind(this)}/>
         </div>
       </div>
     );
