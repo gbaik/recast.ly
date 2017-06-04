@@ -1,10 +1,9 @@
 class App extends React.Component {
   constructor(props) {
     super(props);
-  
     this.state = {
       videos: exampleVideoData,
-      video: exampleVideoData[0]
+      video: exampleVideoData[0],
     };
 
   }  
@@ -15,10 +14,24 @@ class App extends React.Component {
     });
   }
 
+  handleVideoTextEntry(event) {
+    var callAPI = {
+      key: window.YOUTUBE_API_KEY,
+      query: event.target.value,
+      max: 5
+    };
+    var video = searchYouTube(callAPI, (data) => {
+      this.setState({
+        videos: data,
+        video: data[0]
+      });
+    });
+  }
+
   render() {
     return (  
       <div>
-        <Nav />
+        <Nav onVideoTextEntry={this.handleVideoTextEntry.bind(this)}/>
         <div className="col-md-7">
           <VideoPlayer video={this.state.video}/>
         </div>
